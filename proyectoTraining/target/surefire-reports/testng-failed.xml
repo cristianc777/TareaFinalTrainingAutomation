@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Command line suite]">
+  <test name="Command line test(failed)">
+    <classes>
+      <class name="test.BaseTest">
+        <methods>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- test.BaseTest -->
+      <class name="test.TravelocityBusquedaPageTest">
+        <methods>
+          <include name="BuscarVuelo"/>
+        </methods>
+      </class> <!-- test.TravelocityBusquedaPageTest -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->
