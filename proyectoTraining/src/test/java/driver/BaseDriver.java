@@ -1,12 +1,16 @@
 package driver;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseDriver {
 
 	private WebDriver driver;
+	private WebDriverWait wait;
 	
 	public BaseDriver(EnumDrivers driverBrowser) {
 
@@ -26,7 +30,6 @@ public class BaseDriver {
 			System.out.println("");
 			break; 
 		}
-
 	}
 
 	public WebDriver getDriver() {

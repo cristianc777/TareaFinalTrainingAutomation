@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TravelocityHomePage extends BasePage{
@@ -16,10 +17,28 @@ public class TravelocityHomePage extends BasePage{
 	WebElement buttonFlight;
 	@FindBy (id = "flight-type-roundtrip-label-hp-flight")
 	WebElement buttonRoundTrip;
+	@FindBy(id="fhc-fhc-hp-package")
+	WebElement buttonflHoCa;
+	@FindBy(id="tab-hotel-tab-hp")
+	WebElement buttonHotel;
+	@FindBy(id="tab-cruise-tab-hp")
+	WebElement buttonCruise;
 	@FindBy (id = "flight-origin-hp-flight")
 	WebElement textInFrom;
 	@FindBy (id="flight-destination-hp-flight")
 	WebElement textInTo;
+	@FindBy(id="package-origin-hp-package")
+	WebElement textInFromFlHotel;
+	@FindBy(id="package-destination-hp-package")
+	WebElement textInToFlHotel;
+	@FindBy(id="hotel-destination-hp-hotel")
+	WebElement textInGoingTo;
+
+	
+	@FindBy(id = "package-departing-hp-package")
+	WebElement inputDateFromFlHo;
+	@FindBy(id= "package-returning-hp-package")
+	WebElement inputDateToFlHo;
 	@FindBy (id = "flight-departing-hp-flight")
 	WebElement inputDateFrom;
 	@FindBy(className="datepicker-cal-weeks")
@@ -32,15 +51,30 @@ public class TravelocityHomePage extends BasePage{
 	WebElement inputDateFromButtonNext;
 	@FindBy (id = "flight-returning-hp-flight")
 	WebElement inputDateTo;
+	@FindBy(id="package-checkin-hp-package")
+	WebElement inputDateCheckIn;
+	@FindBy(id="package-checkout-hp-package")
+	WebElement inputDateCheckOut;
+	
 	@FindBy (xpath = "//*[@id=\"typeaheadDataPlain\"]")
 	WebElement dropDownULFrom;
 	@FindBy(xpath ="//*[@id=\"aria-option-0\"]")
 	WebElement suggestFirst;
-	@FindBy(css="div.cols-nested:nth-child(22) > label:nth-child(1) > button:nth-child(1)")
-	WebElement buttonSearch;
+	@FindBy(id="search-button-hp-package")
+	WebElement buttonSearch;	
+	@FindBy(id="tab-package-tab-hp")
+	WebElement buttonFlightHotel;
+	@FindBy(css="div.cols-nested:nth-child(11) > label:nth-child(1) > button:nth-child(1)")
+	WebElement buttonSearchHotel;
 	
-	List<WebElement> columns=null;
+	@FindBy(id="partialHotelBooking-hp-package")
+	WebElement checkPartialHotel;
 	
+	@FindBy(partialLinkText="Your partial check-in and check-out dates must fall within your arrival")
+	WebElement containerErrorMessage;
+	
+	private List<WebElement> columns=null;
+
 		
 	public TravelocityHomePage(WebDriver driver) {
 		super(driver);
@@ -52,9 +86,6 @@ public class TravelocityHomePage extends BasePage{
 		columns=tableDates.findElements(By.tagName("td"));	
 		WebElement outWElement=null;
 		for (WebElement wElementTemp: columns){
-			//Select 13th Date 
-			System.out.println("Iter");
-			System.out.println("texto:" + wElementTemp.getText());
 			if (wElementTemp.getText().equals(""+day)){
 				wElementTemp.click();
 				outWElement = wElementTemp;
@@ -70,12 +101,6 @@ public class TravelocityHomePage extends BasePage{
 		WebDriverWait wait=new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("typeaheadDataPlain")));
 		return suggestFirst;
-	}
-	
-	public void clickNTimes(WebElement webElement, int iterations) {
-		for (int i=0;i<iterations; i++) {
-			webElement.click();
-		}
 	}
 	
 	public WebElement getSuggestFrom() {
@@ -197,5 +222,120 @@ public class TravelocityHomePage extends BasePage{
 	public void setButtonSearch(WebElement buttonSearch) {
 		this.buttonSearch = buttonSearch;
 	}
+
+	public WebElement getButtonFlightHotel() {
+		return buttonFlightHotel;
+	}
+
+	public void setButtonFlightHotel(WebElement buttonFlightHotel) {
+		this.buttonFlightHotel = buttonFlightHotel;
+	}
+
+	public WebElement getTextInFromFlHotel() {
+		return textInFromFlHotel;
+	}
+
+	public void setTextInFromFlHotel(WebElement textInFromFlHotel) {
+		this.textInFromFlHotel = textInFromFlHotel;
+	}
+
+	public WebElement getTextInToFlHotel() {
+		return textInToFlHotel;
+	}
+
+	public void setTextInToFlHotel(WebElement textInToFlHotel) {
+		this.textInToFlHotel = textInToFlHotel;
+	}
+
+	public WebElement getInputDateFromFlHo() {
+		return inputDateFromFlHo;
+	}
+
+	public void setInputDateFromFlHo(WebElement inputDateFromFlHo) {
+		this.inputDateFromFlHo = inputDateFromFlHo;
+	}
+
+	public WebElement getInputDateToFlHo() {
+		return inputDateToFlHo;
+	}
+
+	public void setInputDateToFlHo(WebElement inputDateToFlHo) {
+		this.inputDateToFlHo = inputDateToFlHo;
+	}
+
+	public WebElement getButtonflHoCa() {
+		return buttonflHoCa;
+	}
+
+	public void setButtonflHoCa(WebElement buttonflHoCa) {
+		this.buttonflHoCa = buttonflHoCa;
+	}
+
+	public WebElement getButtonHotel() {
+		return buttonHotel;
+	}
+
+	public void setButtonHotel(WebElement buttonHotel) {
+		this.buttonHotel = buttonHotel;
+	}
+
+	public WebElement getTextInGoingTo() {
+		return textInGoingTo;
+	}
+
+	public void setTextInGoingTo(WebElement textInGoingTo) {
+		this.textInGoingTo = textInGoingTo;
+	}
+
+	public WebElement getButtonSearchHotel() {
+		return buttonSearchHotel;
+	}
+
+	public void setButtonSearchHotel(WebElement buttonSearchHotel) {
+		this.buttonSearchHotel = buttonSearchHotel;
+	}
 	
+	public TravelocityHotelSearchPage getTravelocityHotelSearchPage(WebDriver driver) {
+		return new TravelocityHotelSearchPage(driver);
+	}
+
+	public WebElement getCheckPartialHotel() {
+		return checkPartialHotel;
+	}
+
+	public void setCheckPartialHotel(WebElement checkPartialHotel) {
+		this.checkPartialHotel = checkPartialHotel;
+	}
+
+	public WebElement getInputDateCheckIn() {
+		return inputDateCheckIn;
+	}
+
+	public void setInputDateCheckIn(WebElement inputDateCheckIn) {
+		this.inputDateCheckIn = inputDateCheckIn;
+	}
+
+	public WebElement getInputDateCheckOut() {
+		return inputDateCheckOut;
+	}
+
+	public void setInputDateCheckOut(WebElement inputDateCheckOut) {
+		this.inputDateCheckOut = inputDateCheckOut;
+	}
+
+	public WebElement getContainerErrorMessage() {
+		return containerErrorMessage;
+	}
+
+	public void setContainerErrorMessage(WebElement containerErrorMessage) {
+		this.containerErrorMessage = containerErrorMessage;
+	}
+
+	public WebElement getButtonCruise() {
+		return buttonCruise;
+	}
+
+	public void setButtonCruise(WebElement buttonCruise) {
+		this.buttonCruise = buttonCruise;
+	}
 }

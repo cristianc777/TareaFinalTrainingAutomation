@@ -24,7 +24,7 @@ public class BaseTest {
 	
 	@AfterSuite(alwaysRun = true)
 	public void afterSuite() {
-		
+//	bd.getDriver().close();
 	}
 
 	public BaseDriver getBd() {
